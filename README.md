@@ -2,8 +2,6 @@
 
 Example here: <http://mariosal.com/files/vectorjs>
 
-***
-
 ## License ##
 
 Copyright (c) 2011 Mario Saldinger
