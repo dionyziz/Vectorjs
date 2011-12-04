@@ -8,9 +8,9 @@ Vector.prototype = {
         }
 
         var newPoint = [];
-        for ( var i = 0; i < this.point.length; ++i ) {
-            newPoint[ i ] = this.point[ i ] + vector.point[ i ];
-        }
+        this.each( function ( value, i ) {
+            newPoint.push( value + vector.point[ i ] );
+        } );
         return new Vector( newPoint );
     },
     angle: function ( x, y ) {
@@ -25,31 +25,44 @@ Vector.prototype = {
         }
 
         var sum = 0;
-        for ( var i = 0; i < this.point.length; ++i ) {
-            sum += this.point[ i ] * vector.point[ i ];
-        }
+        this.each( function ( value, i ) {
+            sum += value * vector.point[ i ];
+        } );
         return sum;
+    },
+    each: function ( f ) {
+        for ( var i = 0; i < this.point.length; ++i ) {
+            f( this.point[ i ], i );
+        }
     },
     equal: function ( vector ) {
         if ( this.point.length != vector.point.length ) {
             return false;
         }
 
-        for ( var i = 0; i < this.point.length; ++i ) {
-            if ( this.point[ i ] != vector.point[ i ] ) {
-                return false;
+        res = true;
+        this.each( function ( value, i ) {
+            if ( value != vector.point[ i ] ) {
+                res = false;
             }
-        }
-        return true;
+        } );
+        return res;
     },
     length: function () {
         return Math.sqrt( this.dot( this ) );
     },
+    map: function ( f ) {
+        var newPoint = [];
+        this.each( function ( value, i ) {
+            newPoint.push( f( value, i ) );
+        } );
+        return new Vector( newPoint );
+    },
     multiply: function ( r ) {
         var newPoint = [];
-        for ( var i = 0; i < this.point.length; ++i ) {
-            newPoint[ i ] = r * this.point[ i ];
-        }
+        this.each( function ( value ) {
+            newPoint.push( r * value );
+        } );
         return new Vector( newPoint );
     },
     parallel: function ( vector ) {

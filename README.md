@@ -51,6 +51,22 @@ var u = new Vector( [ 1, 5 ] ); // 2d Vector u = ( 1, 5 )
 v.dot( u ); // return 11
 ```
 
+### Each ###
+
+```javascript
+var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
+
+var a = [];
+v.each( function( value ) {
+    a.push( value );
+} ); // a = [ 1, 2 ]
+
+a = [];
+v.each( function( value, i ) {
+    a.push( i + ': ' + value );
+} ); // a = [ '0: 1', '1: 2' ]
+```
+
 ### Equality ###
 
 ```javascript
@@ -72,7 +88,21 @@ v.length(); // return √2
 u.length(); // return √8
 ```
 
-### Scalar Multiplication ###
+### Map ###
+
+```javascript
+var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
+
+v.map( function( value ) {
+    return value * value;
+} ); // return Vector object ( 1, 4 )
+
+v.map( function( value, i ) {
+    return value + i; // add to each point its value plus its index
+} ); // return Vector object ( 1, 3 ); 
+```
+
+### Multiplication ###
 
 ```javascript
 var v = new Vector( [ 1, 1 ] ); // 2d Vector v = ( 1, 1 )
