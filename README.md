@@ -1,6 +1,83 @@
-# VectorJS - JS Library for Euclidean Vectors #
+# Vectorjs - JS Library for Euclidean Vectors #
 
 Example: <http://mariosal.com/files/vectorjs>
+
+## Functions ##
+
+### Constructor ###
+
+```javascript
+var v = new Vector( [ 1, 2, 1 ] );    // 3d Vector v = ( 1, 2, 1 )
+var u = new Vector( [ 1, 0, 0, 1 ] ); // 4d Vector u = ( 1, 0, 0, 1 )
+```
+
+### Addition ###
+
+```javascript
+var v = new Vector( [ 1, 2, 1 ] ); // 3d Vector v = ( 1, 2, 1 )
+var u = new Vector( [ 1, 0, 0 ] ); // 3d Vector u = ( 1, 0, 0 )
+
+v.add( u );     // return Vector object ( 2, 2, 1 )
+u = u.add( v ); // u = ( 2, 2, 1 )
+```
+
+### Distance from v to u ###
+
+```javascript
+var v = new Vector( [ 1, 2, 1 ] ); // 3d Vector v = ( 1, 2, 1 )
+var u = new Vector( [ 1, 0, 0 ] ); // 3d Vector u = ( 1, 0, 0 )
+
+v.distance( u ); // return √5
+```
+
+### Dot Product ###
+
+```javascript
+var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
+var u = new Vector( [ 1, 5 ] ); // 2d Vector u = ( 1, 5 )
+
+v.dot( u ); // return 11
+```
+
+### Equality ###
+
+```javascript
+var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
+var u = new Vector( [ 1, 2 ] ); // 2d Vector u = ( 1, 2 )
+var w = new Vector( [ -5, -10 ] ); // 2d Vector w = ( -5, -10 )
+
+v.equal( u ); // return true
+v.equal( w ); // return false
+```
+
+### Length ###
+
+```javascript
+var v = new Vector( [ 1, 1 ] ); // 2d Vector v = ( 1, 1 )
+var u = new Vector( [ 2, 2 ] ); // 2d Vector u = ( 2, 2 )
+
+v.length(); // return √2
+u.length(); // return √8
+```
+
+### Scalar Multiplication ###
+
+```javascript
+var v = new Vector( [ 1, 1 ] ); // 2d Vector v = ( 1, 1 )
+
+v.multiply( 2 );     // return Vector object ( 2, 2 )
+v = v.multiply( 2 ); // v = ( 2, 2 )
+```
+
+### Subtraction ###
+
+```javascript
+var v = new Vector( [ 1, 2, 1 ] ); // 3d Vector v = ( 1, 2, 1 )
+var u = new Vector( [ 1, 0, 0 ] ); // 3d Vector u = ( 1, 0, 0 )
+
+v.subtract( u );     // return Vector object ( 0, 2, 1 )
+u = u.subtract( v ); // u = ( 0, -2, -1 )
+```
 
 ## License ##
 
