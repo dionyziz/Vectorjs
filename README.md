@@ -1,4 +1,6 @@
-# License #
+# VectorJS - JS Library for Euclidean Vectors #
+---
+## License ##
 
 Copyright (c) 2011 Mario Saldinger
 
