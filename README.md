@@ -1,6 +1,6 @@
 # VectorJS - JS Library for Euclidean Vectors #
 
-Example here: <http://mariosal.com/files/vectorjs>
+Example: <http://mariosal.com/files/vectorjs>
 
 ## License ##
 
