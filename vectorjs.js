@@ -4,6 +4,7 @@ var Vector = function ( point ) {
 Vector.prototype = {
     add: function ( vector ) {
         if ( this.point.length != vector.point.length ) {
+            throw 'add(): Inequal lengths';
             return null;
         }
 
@@ -21,6 +22,7 @@ Vector.prototype = {
     },
     dot: function ( vector ) {
         if ( this.point.length != vector.point.length ) {
+            throw 'dot(): Inequal lengths';
             return false;
         }
 
@@ -37,6 +39,7 @@ Vector.prototype = {
     },
     equal: function ( vector ) {
         if ( this.point.length != vector.point.length ) {
+            throw 'equal(): Inequal lengths';
             return false;
         }
 
