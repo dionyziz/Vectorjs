@@ -89,7 +89,7 @@ var u = new Vector( [ 2, 2 ] );   // 2d Vector u = ( 2, 2 )
 var w = new Vector( [ -2, -2 ] ); // 2d Vector w = ( -2, -2 )
 
 v.parallel( u ); // return true
-v.parallel( w ); // return true;
+v.parallel( w ); // return true
 ```
 
 ### Perpendicular ###
