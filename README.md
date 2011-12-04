@@ -21,6 +21,18 @@ v.add( u );     // return Vector object ( 2, 2, 1 )
 u = u.add( v ); // u = ( 2, 2, 1 )
 ```
 
+### Angle ###
+
+```javascript
+var v = new Vector( [ 1, 1 ] );    // 2d Vector v = ( 1, 1 )
+var u = new Vector( [ 3, 0, 4 ] ); // 3d Vector u = ( 3, 0, 4 )
+
+// 0-indexed axis
+
+v.angle( 0, 1 ); // Angle on x & y axis. Return 45
+u.angle( 0, 2 ); // Angle on x & z axis. Return 53.13010235415598
+```
+
 ### Distance from v to u ###
 
 ```javascript
@@ -42,8 +54,8 @@ v.dot( u ); // return 11
 ### Equality ###
 
 ```javascript
-var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
-var u = new Vector( [ 1, 2 ] ); // 2d Vector u = ( 1, 2 )
+var v = new Vector( [ 1, 2 ] );    // 2d Vector v = ( 1, 2 )
+var u = new Vector( [ 1, 2 ] );    // 2d Vector u = ( 1, 2 )
 var w = new Vector( [ -5, -10 ] ); // 2d Vector w = ( -5, -10 )
 
 v.equal( u ); // return true
@@ -67,6 +79,26 @@ var v = new Vector( [ 1, 1 ] ); // 2d Vector v = ( 1, 1 )
 
 v.multiply( 2 );     // return Vector object ( 2, 2 )
 v = v.multiply( 2 ); // v = ( 2, 2 )
+```
+
+### Parallel ###
+
+```javascript
+var v = new Vector( [ 1, 1 ] );   // 2d Vector v = ( 1, 1 )
+var u = new Vector( [ 2, 2 ] );   // 2d Vector u = ( 2, 2 )
+var w = new Vector( [ -2, -2 ] ); // 2d Vector w = ( -2, -2 )
+
+v.parallel( u ); // return true
+v.parallel( w ); // return true;
+```
+
+### Perpendicular ###
+
+```javascript
+var v = new Vector( [ 1, 1 ] );  // 2d Vector v = ( 1, 1 )
+var u = new Vector( [ -1, 1 ] ); // 2d Vector u = ( -1, 1 )
+
+v.perpendicular( u ); // return true
 ```
 
 ### Subtraction ###

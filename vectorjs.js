@@ -13,6 +13,9 @@ Vector.prototype = {
         }
         return new Vector( newPoint );
     },
+    angle: function ( x, y ) {
+        return Math.atan( this.point[ y ] / this.point[ x ] ) * 180 / Math.PI;
+    },
     distance: function ( vector ) {
         return this.subtract( vector ).length();
     },
@@ -48,6 +51,14 @@ Vector.prototype = {
             newPoint[ i ] = r * this.point[ i ];
         }
         return new Vector( newPoint );
+    },
+    parallel: function ( vector ) {
+        var expectedRatio = this.point[ 0 ] / vector.point[ 0 ];
+
+        return this.equal( vector.multiply( expectedRatio ) );
+    },
+    perpendicular: function ( vector ) {
+        return !this.dot( vector );
     },
     subtract: function ( vector ) {
         return this.add( vector.multiply( -1 ) );
