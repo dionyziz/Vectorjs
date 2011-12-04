@@ -1,31 +1,25 @@
-# Vectorjs - JS Library for Euclidean Vectors #
+# Vectorjs - JS Library for Vectors #
+
+Expanding the prototype of Arrays.
 
 Example: <http://mariosal.com/files/vectorjs>
 
 ## Functions ##
 
-### Constructor ###
-
-```javascript
-var v = new Vector( [ 1, 2, 1 ] );    // 3d Vector v = ( 1, 2, 1 )
-var u = new Vector( [ 1, 0, 0, 1 ] ); // 4d Vector u = ( 1, 0, 0, 1 )
-```
-
 ### Addition ###
 
 ```javascript
-var v = new Vector( [ 1, 2, 1 ] ); // 3d Vector v = ( 1, 2, 1 )
-var u = new Vector( [ 1, 0, 0 ] ); // 3d Vector u = ( 1, 0, 0 )
+var v = [ 1, 2, 1 ];
+var u = [ 1, 0, 0 ];
 
-v.add( u );     // return Vector object ( 2, 2, 1 )
-u = u.add( v ); // u = ( 2, 2, 1 )
+v.add( u ); // return [ 2, 2, 1 ]
 ```
 
 ### Angle ###
 
 ```javascript
-var v = new Vector( [ 1, 1 ] );    // 2d Vector v = ( 1, 1 )
-var u = new Vector( [ 3, 0, 4 ] ); // 3d Vector u = ( 3, 0, 4 )
+var v = [ 1, 1 ];
+var u = [ 3, 0, 4 ];
 
 // 0-indexed axis
 
@@ -36,8 +30,8 @@ u.angle( 0, 2 ); // Angle on x & z axis. Return 53.13010235415598
 ### Distance from v to u ###
 
 ```javascript
-var v = new Vector( [ 1, 2, 1 ] ); // 3d Vector v = ( 1, 2, 1 )
-var u = new Vector( [ 1, 0, 0 ] ); // 3d Vector u = ( 1, 0, 0 )
+var v = [ 1, 2, 1 ];
+var u = [ 1, 0, 0 ];
 
 v.distance( u ); // return √5
 ```
@@ -45,78 +39,39 @@ v.distance( u ); // return √5
 ### Dot Product ###
 
 ```javascript
-var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
-var u = new Vector( [ 1, 5 ] ); // 2d Vector u = ( 1, 5 )
+var v = [ 1, 2 ];
+var u = [ 1, 5 ];
 
 v.dot( u ); // return 11
-```
-
-### Each ###
-
-```javascript
-var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
-
-var a = [];
-v.each( function( value ) {
-    a.push( value );
-} ); // a = [ 1, 2 ]
-
-a = [];
-v.each( function( value, i ) {
-    a.push( i + ': ' + value );
-} ); // a = [ '0: 1', '1: 2' ]
 ```
 
 ### Equality ###
 
 ```javascript
-var v = new Vector( [ 1, 2 ] );    // 2d Vector v = ( 1, 2 )
-var u = new Vector( [ 1, 2 ] );    // 2d Vector u = ( 1, 2 )
-var w = new Vector( [ -5, -10 ] ); // 2d Vector w = ( -5, -10 )
+var v = [ 1, 2 ];
+var u = [ 1, 2 ];
+var w = [ -5, -10, 5 ];
 
 v.equal( u ); // return true
 v.equal( w ); // return false
 ```
 
-### Length ###
+### Norm ###
 
 ```javascript
-var v = new Vector( [ 1, 1 ] ); // 2d Vector v = ( 1, 1 )
-var u = new Vector( [ 2, 2 ] ); // 2d Vector u = ( 2, 2 )
+var v = [ 1, 1 ];
+var u = [ 2, 2 ];
 
-v.length(); // return √2
-u.length(); // return √8
-```
-
-### Map ###
-
-```javascript
-var v = new Vector( [ 1, 2 ] ); // 2d Vector v = ( 1, 2 )
-
-v.map( function( value ) {
-    return value * value;
-} ); // return Vector object ( 1, 4 )
-
-v.map( function( value, i ) {
-    return value + i; // add to each point its value plus its index
-} ); // return Vector object ( 1, 3 ); 
-```
-
-### Multiplication ###
-
-```javascript
-var v = new Vector( [ 1, 1 ] ); // 2d Vector v = ( 1, 1 )
-
-v.multiply( 2 );     // return Vector object ( 2, 2 )
-v = v.multiply( 2 ); // v = ( 2, 2 )
+v.norm(); // return √2
+u.norm(); // return √8
 ```
 
 ### Parallel ###
 
 ```javascript
-var v = new Vector( [ 1, 1 ] );   // 2d Vector v = ( 1, 1 )
-var u = new Vector( [ 2, 2 ] );   // 2d Vector u = ( 2, 2 )
-var w = new Vector( [ -2, -2 ] ); // 2d Vector w = ( -2, -2 )
+var v = [ 1, 1 ];
+var u = [ 2, 2 ];
+var w = [ -2, -2 ];
 
 v.parallel( u ); // return true
 v.parallel( w ); // return true
@@ -125,20 +80,27 @@ v.parallel( w ); // return true
 ### Perpendicular ###
 
 ```javascript
-var v = new Vector( [ 1, 1 ] );  // 2d Vector v = ( 1, 1 )
-var u = new Vector( [ -1, 1 ] ); // 2d Vector u = ( -1, 1 )
+var v = [ 1, 1 ];
+var u = [ -1, 1 ];
 
 v.perpendicular( u ); // return true
+```
+
+### Scalar Multiplication ###
+
+```javascript
+var v = [ 1, 1 ];
+
+v.scalarMultiply( 2 ); // return [ 2, 2 ]
 ```
 
 ### Subtraction ###
 
 ```javascript
-var v = new Vector( [ 1, 2, 1 ] ); // 3d Vector v = ( 1, 2, 1 )
-var u = new Vector( [ 1, 0, 0 ] ); // 3d Vector u = ( 1, 0, 0 )
+var v = [ 1, 2, 1 ];
+var u = [ 1, 0, 0 ];
 
-v.subtract( u );     // return Vector object ( 0, 2, 1 )
-u = u.subtract( v ); // u = ( 0, -2, -1 )
+v.subtract( u ); // return [ 0, 2, 1 ]
 ```
 
 ## License ##

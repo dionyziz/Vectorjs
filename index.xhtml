@@ -8,26 +8,27 @@
     <body>
         <script src='vectorjs.js' type='application/javascript'></script>
         <script type='application/javascript'>
-            var v = new Vector( [ 1, 1 ] );
-            var u = new Vector( [ 2, 2 ] );
+            var v = [ 1, 1 ];
+            var u = [ 2, 2 ];
 
-            console.log( 'v.add( u ).length(): ' + v.add( u ).length() );
+            console.log( 'v: ' + v + '\nu: ' + u );
+
+            console.log( 'v.add( u ).norm(): ' + v.add( u ).norm() );
 
             console.log( 'v.distance( u ): ' + v.distance( u ) );
 
             console.log( 'v.dot( u ): ' + v.dot( u ) );
 
-            console.log( 'v.equal( new Vector( [ 1, 1 ] ) ): ' + v.equal( new Vector( [ 1, 1 ] ) ) );
-            console.log( 'v.equal( new Vector( [ 1, -5 ] ) ): ' + v.equal( new Vector( [ 1, -5 ] ) ) );
+            console.log( 'v.equal( [ 1, 1 ] ): ' + v.equal( [ 1, 1 ] ) );
+            console.log( 'v.equal( [ 1, -5 ] ): ' + v.equal( [ 1, -5 ] ) );
 
-            console.log( 'v.length(): ' + v.length() );
-            console.log( 'u.length(): ' + u.length() );
+            console.log( 'v.norm(): ' + v.norm() );
+            console.log( 'u.norm(): ' + u.norm() );
 
-            console.log( 'v.multiply( 3 ).length(): ' + v.multiply( 3 ).length() );
-            console.log( 'u.multiply( -5 ).length(): ' + u.multiply( -5 ).length() );
+            console.log( 'v.scalarMultiply( 3 ).norm(): ' + v.scalarMultiply( 3 ).norm() );
+            console.log( 'u.scalarMultiply( -5 ).norm(): ' + u.scalarMultiply( -5 ).norm() );
 
-            console.log( 'v.subtract( u ): ' );
-            console.log( v.subtract( u ) );
+            console.log( 'v.subtract( u ): ' + v.subtract( u ) );
         </script>
     </body>
 </html>
