@@ -1,14 +1,10 @@
 Array.prototype.add = function ( vector ) {
     if ( this.length != vector.length ) {
         throw 'add() = Inequal lengths';
-        return null;
     }
-
-    var newVector = [];
-    this.forEach( function ( value, index ) {
-        newVector.push( value + vector[ index ] );
+    return this.map( function ( value, index ) {
+        return vector[ index ] + value;
     } );
-    return newVector;
 };
 Array.prototype.angle = function ( x, y ) {
     return Math.atan( this[ y ] / this[ x ] ) * 180 / Math.PI;
@@ -19,37 +15,35 @@ Array.prototype.distance = function ( vector ) {
 Array.prototype.dot = function ( vector ) {
     if ( this.length != vector.length ) {
         throw 'dot() = Inequal lengths';
-        return false;
     }
-
-    var sum = 0;
-    this.forEach( function ( value, index ) {
-        sum += value * vector[ index ];
-    } );
-    return sum;
+    return this.reduce( function ( a, b, index ) {
+        return a + b * vector[ index ];
+    }, 0 );
 };
 Array.prototype.equal = function ( vector ) {
     if ( this.length != vector.length ) {
         return false;
     }
 
-    res = true;
-    this.forEach( function ( value, index ) {
-        if ( value != vector[ index ] ) {
-            res = false;
-        }
-    } );
-    return res;
+    try {
+        this.forEach( function ( value, index ) {
+            if ( value != vector[ index ] ) {
+                throw false;
+            }
+        } );
+    }
+    catch ( e ) {
+        return false;
+    }
+    return true;
 };
 Array.prototype.norm = function () {
     return Math.sqrt( this.dot( this ) );
 };
 Array.prototype.scalarMultiply = function ( r ) {
-    var newVector = [];
-    this.forEach( function ( value ) {
-        newVector.push( r * value );
+    return this.map( function ( value ) {
+        return r * value;
     } );
-    return newVector;
 };
 Array.prototype.parallel = function ( vector ) {
     var expectedRatio = this[ 0 ] / vector[ 0 ];
@@ -62,3 +56,4 @@ Array.prototype.perpendicular = function ( vector ) {
 Array.prototype.subtract = function ( vector ) {
     return this.add( vector.scalarMultiply( -1 ) );
 };
+
