@@ -56,4 +56,3 @@ Array.prototype.perpendicular = function ( vector ) {
 Array.prototype.subtract = function ( vector ) {
     return this.add( vector.scalarMultiply( -1 ) );
 };
-
