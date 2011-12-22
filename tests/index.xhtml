@@ -2,26 +2,27 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
     <head>
-        <title>Vector Test</title>
+        <title>VectorJS Test</title>
         <style>
             body {
-                font-family: "DejaVu Sans Mono", "Lucida Console", "Courier New", monospace;
+                font-family: monospace;
+            }
+            span {
+                font-weight: bold;
             }
             .fail span {
                 color: red;
-                font-weight: bold;
             }
             .pass span {
                 color: green;
-                font-weight: bold;
             }
         </style>
     </head>
 
     <body>
-        <h1>vector.js unit test</h1>
-        <ol id='tests'>
-        </ol>
+        <h1>VectorJS unit test</h1>
+        <ol id='tests'></ol>
+
         <script src='../vectorjs.js' type='application/javascript'></script>
         <script src='unittest.js' type='application/javascript'></script>
         <script type='application/javascript'>
