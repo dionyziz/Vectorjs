@@ -1,0 +1,48 @@
+<?xml version='1.0' ?>
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+        <title>Vector Test</title>
+        <style>
+            body {
+                font-family: "DejaVu Sans Mono", "Lucida Console", "Courier New", monospace;
+            }
+            .fail span {
+                color: red;
+                font-weight: bold;
+            }
+            .pass span {
+                color: green;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>vector.js unit test</h1>
+        <ol id='tests'>
+        </ol>
+        <script src='../vectorjs.js' type='application/javascript'></script>
+        <script src='unittest.js' type='application/javascript'></script>
+        <script type='application/javascript'>
+            var v = [ 1, 1 ];
+            var u = [ 2, 2 ];
+
+            assertCloseEnough( 3 * Math.sqrt( 2 ), v.add( u ).norm(), 'Vectors did not add correctly' );
+
+            assertCloseEnough( Math.sqrt( 2 ), v.distance( u ), 'Distance calculation is incorrect' );
+
+            assertEquals( 4, v.dot( u ), 'Dot product is incorrect' );
+
+            assert( v.equal( v ), 'Equal vectors incorrectly reported as unequal' );
+            assert( !v.equal( u ), 'Unequal vectors incorrectly reported as equal' );
+
+            assertCloseEnough( Math.sqrt( 2 ), v.norm(), 'Norm calculation is incorrect' );
+            assertCloseEnough( 2 * Math.sqrt( 2 ), u.norm(), 'Norm calculation is incorrect' );
+
+            assertCloseEnough( 3 * Math.sqrt( 2 ), v.scalarMultiply( 3 ).norm(), 'Scalar multiplication failed' );
+            assertCloseEnough( 5 * Math.sqrt( 2 ), v.scalarMultiply( -5 ).norm(), 'Scalar multiplication with a negative number failed' );
+            assert( v.subtract( u ).equal( [ -1, -1 ] ), 'Subtraction failed' );
+        </script>
+    </body>
+</html>
