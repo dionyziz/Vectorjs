@@ -1,68 +1,72 @@
-/*
- * Adds two vectors. They must be of the same dimension.
+var assert = function ( condition, description ) {
+    if ( !condition ) {
+        throw description;
+    }
+};
+
+/* Adds two vectors
  *
- * @param (vector) vector The vector to add to the current vector
- * @return (vector) The resulting vector
+ * @param {array} vector The target vector to add to the current vector
+ * @throws {InequalLengths} If they have different dimensions
+ * @return {array} The resulting vector
  */
 Array.prototype.add = function ( vector ) {
-    if ( this.length != vector.length ) {
-        throw 'add() = Inequal lengths';
-    }
+    assert( this.length == vector.length, 'add(): Inequal Lengths' );
+
     return this.map( function ( value, index ) {
         return vector[ index ] + value;
     } );
 };
-/*
- * Calculates an Euler angle of the current vector on a plane
- * defined by the caller
+
+/* Calculates the angle between the current vector and a target vector
  *
- * @param (number) x The index of the first dimension to use
- * @param (number) y The index of the second dimension to use
- * @return (number) The angle, in degrees
+ * @param {array} vector The target vector
+ * @return {number} Radians
  */
-Array.prototype.angle = function ( x, y ) {
-    return Math.atan( this[ y ] / this[ x ] ) * 180 / Math.PI;
+Array.prototype.angle = function ( vector ) {
+    return Math.acos( this.dot( vector ) / ( this.norm() * vector.norm() ) );
 };
-/*
- * Returns the distance between the current vector and a target vector
+
+/* Calculates the distance between the current vector and a target vector
  *
- * @param (vector) vector The target vector
- * @return (number) The distance as a scalar
+ * @param {array} vector The target vector
+ * @return {number} The distance
  */
 Array.prototype.distance = function ( vector ) {
     return this.subtract( vector ).norm();
 };
-/*
- * Returns the square distance between the current vector and a target vector
+
+/* Calculates the squared distance between the current vector and a target vector
  *
- * @param (vector) vector The target vector
- * @return (number) The square of the distance as a scalar
+ * @param {array} vector The target vector
+ * @return {number} The square of the distance
  */
 Array.prototype.distance2 = function ( vector ) {
     return this.subtract( vector ).norm2();
 };
-/*
- * Evaluates the dot product between the current vector and a target vector
+
+/* Calculates the dot product between the current vector and a target vector
  *
- * @param (vector) vector The target vector
- * @return (number) The dot product
+ * @param {array} vector The target vector. If omitted, the current is assumed
+ * @return {number} The dot product
  */
 Array.prototype.dot = function ( vector ) {
-    if ( this.length != vector.length ) {
-        throw 'dot() = Inequal lengths';
-    }
+    vector = vector || this;
+
+    assert( this.length == vector.length, 'dot(): Inequal Lengths' );
+
     return this.reduce( function ( a, b, index ) {
         return a + b * vector[ index ];
     }, 0 );
 };
-/*
- * Checks whether two vectors are equal. The check is performed between
+
+/* Checks whether two vectors are equal. The check is performed between
  * the current vector and a target vector.
  *
- * @param (vector) vector The target vector
- * @return (boolean) true if the two vectors are equal; false otherwise
+ * @param {array} vector The target vector
+ * @return {boolean} true if the two vectors are equal; false otherwise
  */
-Array.prototype.equal = function ( vector ) {
+Array.prototype.equals = function ( vector ) {
     if ( this.length != vector.length ) {
         return false;
     }
@@ -79,59 +83,75 @@ Array.prototype.equal = function ( vector ) {
     }
     return true;
 };
-/*
- * Calculates the Euclidean norm of the current vector
+
+/* Calculates the norm of the current vector
  *
- * @return (number) The norm
+ * @return {number} The norm
  */
 Array.prototype.norm = function () {
-    return Math.sqrt( this.dot( this ) );
+    return Math.sqrt( this.dot() );
 };
-/*
- * Calculates the square of the Euclidean norm of the current vector
+
+/* Calculates the squared norm of the current vector
  *
- * @return (number) The norm
+ * @return {number} The norm
  */
-Array.prototype.norm2 = function () {
-    return this.dot( this );
+Array.prototype.norm = function () {
+    return Math.sqrt( this.dot() );
 };
-/*
- * Scales the current vector by a factor
+
+/* Scales the current vector by a factor
  *
- * @param (number) lambda The scaling factor
- * @return (vector) The resulting vector
+ * @param {number} lambda The scaling factor
+ * @return {array} The resulting vector
  */
 Array.prototype.scalarMultiply = function ( lambda ) {
     return this.map( function ( value ) {
         return lambda * value;
     } );
 };
-/*
- * Checks whether two vectors are parallel.
+
+/* Checks whether two vectors are parallel.
  *
- * @param (vector) vector The vector to check against
- * @return (boolean) true if the two vectors are parallel; false otherwise
+ * @param {array} vector The vector to check against
+ * @return {boolean} true if the two vectors are parallel; false otherwise
  */
 Array.prototype.parallel = function ( vector ) {
     var expectedRatio = this[ 0 ] / vector[ 0 ];
 
-    return this.equal( vector.scalarMultiply( expectedRatio ) );
+    return this.equals( vector.scalarMultiply( expectedRatio ) );
 };
-/*
- * Checks whether two vectors are perpendicular.
+
+/* Checks whether two vectors are perpendicular.
  *
- * @param (vector) vector The vector to check against
- * @return (boolean) true if the two vectors are perpendicular; false otherwise
+ * @param {array} vector The vector to check against
+ * @return {boolean} true if the two vectors are perpendicular; false otherwise
  */
 Array.prototype.perpendicular = function ( vector ) {
     return !this.dot( vector );
 };
-/*
- * Calculates the difference between two vectors.
+
+/* Subtracts two vectors.
  *
- * @param (vector) vector The vector to subtract from the current one
- * @return (vector) The difference
+ * @param {array} vector The target vector to subtract from the current vector
+ * @return {array} The resulting vector
  */
 Array.prototype.subtract = function ( vector ) {
     return this.add( vector.scalarMultiply( -1 ) );
+};
+
+/* Converts radians to degrees
+ *
+ * @return {number} Degrees
+ */
+Number.prototype.toDegrees = function () {
+    return this * 180 / Math.PI;
+};
+
+/* Converts degrees to radians
+ *
+ * @return {number} Radians
+ */
+Number.prototype.toRadians = function () {
+    return this * Math.PI / 180;
 };
