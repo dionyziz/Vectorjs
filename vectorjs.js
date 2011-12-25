@@ -44,7 +44,7 @@ Array.prototype.angle = function ( vector ) {
  */
 Array.prototype.cross = function ( vector ) {
     assert( this.length == vector.length, 'cross(): Inequal Lengths' );
-    assert( this.length <= 3, 'cross(): Vector length greater than 3' );
+    assert( this.length <= 3, 'cross(): this.length > 3' );
 
     for ( var i = 0; i < 3; ++i ) {
         if ( this[ i ] == undefined ) {
@@ -58,7 +58,7 @@ Array.prototype.cross = function ( vector ) {
     return [
         this[ 1 ] * vector[ 2 ] - this[ 2 ] * vector[ 1 ],
         this[ 2 ] * vector[ 0 ] - this[ 0 ] * vector[ 2 ],
-        this[ 0 ] * vector[ 1 ] - this[ 0 ] * vector[ 1 ],
+        this[ 0 ] * vector[ 1 ] - this[ 1 ] * vector[ 0 ],
     ];
 };
 
@@ -115,6 +115,15 @@ Array.prototype.equals = function ( vector ) {
  */
 Array.prototype.norm = function () {
     return Math.sqrt( this.dot() );
+};
+
+/**
+ * Normalises a vector
+ *
+ * @return {number} The normalised vector
+ */
+Array.prototype.normalise = function () {
+    return this.scalarMultiply( 1 / this.norm() );
 };
 
 /**
