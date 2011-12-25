@@ -18,6 +18,8 @@
 
             console.log( 'v.angle( [ 1, 0 ] ) == %f: %o', ( 45 ).toRadians(), Math.round( 1000 * v.angle( [ 1, 0 ] ) ) == 785 );
 
+            console.log( '[ 1, 0, 0 ].cross( [ 0, 1, 0 ] ) == [ 0, 0, 1 ]: %o', [ 1, 0, 0 ].cross( [ 0, 1, 0 ] ).toString() == [ 0, 0, 1 ].toString() );
+
             console.log( 'u.distance( v ) == %f: %o', Math.sqrt( 2 ), Math.round( 1000 * u.distance( v ) ) == 1414 );
 
             console.log( 'u.distance2( v ) == %d: %o', 2, u.distance2( v ) == 2 );
@@ -27,6 +29,8 @@
             console.log( 'u.equals( [ 2, 2 ] ) == true: %o', u.equals( [ 2, 2 ] ) );
 
             console.log( 'u.norm() == %f: %o', Math.sqrt( 8 ), Math.round( 1000 * u.norm() ) == 2828 );
+
+            console.log( '[ 2, 0 ].nornalise() == [ 1, 0 ]: %o', [ 2, 0 ].normalise().toString() == [ 1, 0 ].toString() );
 
             console.log( 'u.scalarMultiply( 2 ) == [ 4, 4 ]: %o', u.scalarMultiply( 2 ).toString() == [ 4, 4 ].toString() );
 
