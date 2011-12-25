@@ -1,5 +1,5 @@
 /**
- * Checks whether the condition is true
+ * Checks rhether the condition is true
  *
  * @param {boolean} condition The condition to be checked
  * @param {string} description The thrown string if condition is false
@@ -7,7 +7,7 @@
  */
 var assert = function ( condition, description ) {
     if ( !condition ) {
-        throw description;
+        throw 'Assertion failed: ' + description;
     }
 };
 
