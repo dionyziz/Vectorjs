@@ -3,47 +3,42 @@
 <html xmlns='http://www.w3.org/1999/xhtml'>
     <head>
         <title>VectorJS Test</title>
-        <style>
-            body {
-                font-family: monospace;
-            }
-            span {
-                font-weight: bold;
-            }
-            .fail span {
-                color: red;
-            }
-            .pass span {
-                color: green;
-            }
-        </style>
     </head>
 
     <body>
-        <h1>VectorJS unit test</h1>
-        <ol id='tests'></ol>
-
         <script src='../vectorjs.js' type='application/javascript'></script>
-        <script src='unittest.js' type='application/javascript'></script>
         <script type='application/javascript'>
             var v = [ 1, 1 ];
             var u = [ 2, 2 ];
 
-            assertCloseEnough( 3 * Math.sqrt( 2 ), v.add( u ).norm(), 'Vectors did not add correctly' );
+            console.log( 'v: %o', v );
+            console.log( 'u: %o', u );
 
-            assertCloseEnough( Math.sqrt( 2 ), v.distance( u ), 'Distance calculation is incorrect' );
+            console.log( 'v.add( u ) == [ 3, 3 ]: %o', v.add( u ).toString() == [ 3, 3 ].toString() );
 
-            assertEquals( 4, v.dot( u ), 'Dot product is incorrect' );
+            console.log( 'v.angle( [ 1, 0 ] ) == %f: %o', ( 45 ).toRadians(), Math.round( 1000 * v.angle( [ 1, 0 ] ) ) == 785 );
 
-            assert( v.equal( v ), 'Equal vectors incorrectly reported as unequal' );
-            assert( !v.equal( u ), 'Unequal vectors incorrectly reported as equal' );
+            console.log( 'u.distance( v ) == %f: %o', Math.sqrt( 2 ), Math.round( 1000 * u.distance( v ) ) == 1414 );
 
-            assertCloseEnough( Math.sqrt( 2 ), v.norm(), 'Norm calculation is incorrect' );
-            assertCloseEnough( 2 * Math.sqrt( 2 ), u.norm(), 'Norm calculation is incorrect' );
+            console.log( 'u.distance2( v ) == %d: %o', 2, u.distance2( v ) == 2 );
 
-            assertCloseEnough( 3 * Math.sqrt( 2 ), v.scalarMultiply( 3 ).norm(), 'Scalar multiplication failed' );
-            assertCloseEnough( 5 * Math.sqrt( 2 ), v.scalarMultiply( -5 ).norm(), 'Scalar multiplication with a negative number failed' );
-            assert( v.subtract( u ).equal( [ -1, -1 ] ), 'Subtraction failed' );
+            console.log( 'v.dot( u ) == %d: %o', 4, v.dot( u ) == 4 );
+
+            console.log( 'u.equals( [ 2, 2 ] ) == true: %o', u.equals( [ 2, 2 ] ) );
+
+            console.log( 'u.norm() == %f: %o', Math.sqrt( 8 ), Math.round( 1000 * u.norm() ) == 2828 );
+
+            console.log( 'u.scalarMultiply( 2 ) == [ 4, 4 ]: %o', u.scalarMultiply( 2 ).toString() == [ 4, 4 ].toString() );
+
+            console.log( 'u.parallel( [ -4, -4 ] ) == true: %o', u.parallel( [ -4, -4 ] )  );
+
+            console.log( 'v.perpendicular( [ -1, 1 ] ) == true: %o', v.perpendicular( [ -1, 1 ] )  );
+
+            console.log( 'u.subtract( v ) == [ 1, 1 ]: %o', u.subtract( v ).toString() == [ 1, 1 ].toString() );
+
+            console.log( '( %f ).toDegrees() == 180: %o', Math.PI, Math.PI.toDegrees() == 180 );
+
+            console.log( '( 180 ).toRadians() == %f: %o', Math.PI, Math.round( 1000 * ( 180 ).toRadians() ) == 3142 );
         </script>
     </body>
 </html>
