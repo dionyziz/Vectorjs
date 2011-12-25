@@ -1,3 +1,9 @@
+/* Checks whether the condition is true
+ *
+ * @param {boolean} condition The condition to be checked
+ * @param {string} description The thrown string if condition is false
+ * @throws {FalseCondition} Throws the description if condition is false
+ */
 var assert = function ( condition, description ) {
     if ( !condition ) {
         throw description;
@@ -42,7 +48,7 @@ Array.prototype.distance = function ( vector ) {
  * @return {number} The square of the distance
  */
 Array.prototype.distance2 = function ( vector ) {
-    return this.subtract( vector ).norm2();
+    return this.subtract( vector ).dot();
 };
 
 /* Calculates the dot product between the current vector and a target vector
@@ -60,39 +66,18 @@ Array.prototype.dot = function ( vector ) {
     }, 0 );
 };
 
-/* Checks whether two vectors are equal. The check is performed between
+/*
+ * Checks whether two vectors are equal. The check is performed between
  * the current vector and a target vector.
  *
  * @param {array} vector The target vector
  * @return {boolean} true if the two vectors are equal; false otherwise
  */
 Array.prototype.equals = function ( vector ) {
-    if ( this.length != vector.length ) {
-        return false;
-    }
-
-    try {
-        this.forEach( function ( value, index ) {
-            if ( value != vector[ index ] ) {
-                throw false;
-            }
-        } );
-    }
-    catch ( e ) {
-        return false;
-    }
-    return true;
+    return this.toString() == vector.toString();
 };
 
 /* Calculates the norm of the current vector
- *
- * @return {number} The norm
- */
-Array.prototype.norm = function () {
-    return Math.sqrt( this.dot() );
-};
-
-/* Calculates the squared norm of the current vector
  *
  * @return {number} The norm
  */
