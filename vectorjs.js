@@ -206,16 +206,3 @@ Number.prototype.toRadians = function () {
 Array.prototype.isMatrix = function () {
     return this[ 0 ] instanceof Array;
 };
-
-[ 1, 2, 3 ].add( [ 2, 4, 5 ] );
-[
-  [ 1, 2, 4, 5 ],
-  [ 3, 1, 2, 3 ],
-  [ 1, 41, 2, 3 ]
-].add(
-[
-  [ 1, 14, 2, 1 ],
-  [ 9, 7, 8, 36 ],
-  [ 4, 3, 5, 12 ]
-]
-);
