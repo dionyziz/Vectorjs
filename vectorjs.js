@@ -1,3 +1,7 @@
+var vectorJS = {
+    EPSILON: 0.00001
+};
+
 /**
  * Checks whether the condition is true
  *
@@ -12,18 +16,30 @@ var assert = function ( condition, description ) {
 };
 
 /**
- * Adds two vectors
+ * Adds two vectors or matrices
  *
- * @param {array} vector The target vector
+ * @param {array} vector The target operand (vector or matrix)
  * @throws {InequalLengths} If they have different dimensions
- * @return {array} The resulting vector
+ * @return {array} The resulting vector or matrix
  */
-Array.prototype.add = function ( vector ) {
-    assert( this.length == vector.length, 'add(): Inequal Lengths' );
+Array.prototype.add = function ( operand ) {
+    var self = this;
 
-    return this.map( function ( value, index ) {
-        return value + vector[ index ];
-    } );
+    assert( this.length == operand.length, 'add(): Inequal Lengths' );
+    function vectorAdd() {
+        return self.map( function ( value, index ) {
+            return value + operand[ index ];
+        } );
+    }
+    function matrixAdd() {
+        return self.map( function ( value, index ) {
+            return value.add( operand[ index ] );
+        } );
+    }
+    if ( this.isMatrix() ) {
+        return matrixAdd();
+    }
+    return vectorAdd();
 };
 
 /**
@@ -156,7 +172,7 @@ Array.prototype.parallel = function ( vector ) {
  * @return {boolean} true if the two vectors are perpendicular; false otherwise
  */
 Array.prototype.perpendicular = function ( vector ) {
-    return !this.dot( vector );
+    return this.dot( vector ) < vectorJS.EPSILON;
 };
 
 /**
@@ -186,3 +202,20 @@ Number.prototype.toDegrees = function () {
 Number.prototype.toRadians = function () {
     return this * Math.PI / 180;
 };
+
+Array.prototype.isMatrix = function () {
+    return this[ 0 ] instanceof Array;
+};
+
+[ 1, 2, 3 ].add( [ 2, 4, 5 ] );
+[
+  [ 1, 2, 4, 5 ],
+  [ 3, 1, 2, 3 ],
+  [ 1, 41, 2, 3 ]
+].add(
+[
+  [ 1, 14, 2, 1 ],
+  [ 9, 7, 8, 36 ],
+  [ 4, 3, 5, 12 ]
+]
+);

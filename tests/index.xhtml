@@ -15,34 +15,46 @@
             console.log( 'u: %o', u );
 
             console.log( 'v.add( u ) == [ 3, 3 ]: %o', v.add( u ).toString() == [ 3, 3 ].toString() );
-
             console.log( 'v.angle( [ 1, 0 ] ) == %f: %o', ( 45 ).toRadians(), Math.round( 1000 * v.angle( [ 1, 0 ] ) ) == 785 );
-
             console.log( '[ 1, 0, 0 ].cross( [ 0, 1, 0 ] ) == [ 0, 0, 1 ]: %o', [ 1, 0, 0 ].cross( [ 0, 1, 0 ] ).toString() == [ 0, 0, 1 ].toString() );
-
             console.log( 'u.distance( v ) == %f: %o', Math.sqrt( 2 ), Math.round( 1000 * u.distance( v ) ) == 1414 );
-
             console.log( 'u.distance2( v ) == %d: %o', 2, u.distance2( v ) == 2 );
-
             console.log( 'v.dot( u ) == %d: %o', 4, v.dot( u ) == 4 );
-
             console.log( 'u.equals( [ 2, 2 ] ) == true: %o', u.equals( [ 2, 2 ] ) );
-
             console.log( 'u.norm() == %f: %o', Math.sqrt( 8 ), Math.round( 1000 * u.norm() ) == 2828 );
-
             console.log( '[ 2, 0 ].nornalise() == [ 1, 0 ]: %o', [ 2, 0 ].normalise().toString() == [ 1, 0 ].toString() );
-
             console.log( 'u.scalarMultiply( 2 ) == [ 4, 4 ]: %o', u.scalarMultiply( 2 ).toString() == [ 4, 4 ].toString() );
-
             console.log( 'u.parallel( [ -4, -4 ] ) == true: %o', u.parallel( [ -4, -4 ] )  );
-
             console.log( 'v.perpendicular( [ -1, 1 ] ) == true: %o', v.perpendicular( [ -1, 1 ] )  );
-
             console.log( 'u.subtract( v ) == [ 1, 1 ]: %o', u.subtract( v ).toString() == [ 1, 1 ].toString() );
-
             console.log( '( %f ).toDegrees() == 180: %o', Math.PI, Math.PI.toDegrees() == 180 );
-
             console.log( '( 180 ).toRadians() == %f: %o', Math.PI, Math.round( 1000 * ( 180 ).toRadians() ) == 3142 );
+
+            var A = [
+                [ 1, 2, 3, 4 ],
+                [ 5, 6, 7, 8 ],
+                [ 9, 10, 11, 12 ],
+                [ 13, 14, 15, 16 ]
+            ];
+            var B = [
+                [ 15, 10, 5, 0 ],
+                [ 3, 6, 9, 12 ],
+                [ 7, 0, 7, 0 ],
+                [ -100, 100, -100, -100 ]
+            ];
+
+            console.log( A.add( B ).equals( [
+                [ 16, 12, 8, 4 ],
+                [ 8, 12, 16, 20 ],
+                [ 16, 10, 18, 12 ],
+                [ -87, 114, -85, -84 ]
+            ] ) );
+            console.log( !A.add( B ).equals( [
+                [ 15, 12, 8, 4 ],
+                [ 8, 12, 16, 20 ],
+                [ 16, 10, 18, 12 ],
+                [ -87, 114, -85, -84 ]
+            ] ) );
         </script>
     </body>
 </html>
